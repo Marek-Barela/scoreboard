@@ -48,4 +48,16 @@ export class Scoreboard {
     match.homeScore = homeScore;
     match.awayScore = awayScore;
   }
+
+  finishMatch(homeTeam: string, awayTeam: string): void {
+    const matchIndex = this.matches.findIndex(
+      m => m.homeTeam === homeTeam && m.awayTeam === awayTeam
+    );
+
+    if (matchIndex === -1) {
+      throw new Error("Match not found");
+    }
+
+    this.matches.splice(matchIndex, 1);
+  }
 }
