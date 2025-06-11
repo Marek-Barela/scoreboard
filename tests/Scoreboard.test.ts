@@ -26,4 +26,15 @@ describe("Scoreboard", () => {
       scoreboard.startMatch("Poland", "Germany");
     }).toThrow("Match already started");
   });
+
+  it("should update the score of an existing match", () => {
+    const scoreboard = new Scoreboard();
+
+    scoreboard.startMatch("Poland", "Germany");
+    scoreboard.updateScore("Poland", "Germany", 2, 1);
+    const summary = scoreboard.getSummary();
+
+    expect(summary[0].homeScore).toBe(2);
+    expect(summary[0].awayScore).toBe(1);
+  });
 });
