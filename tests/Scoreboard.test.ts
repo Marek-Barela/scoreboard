@@ -45,4 +45,12 @@ describe("Scoreboard", () => {
       scoreboard.updateScore("Spain", "Brazil", 3, 2);
     }).toThrow("Match not found");
   });
+
+  it("should throw an error when trying to finish a non-existent match", () => {
+    const scoreboard = new Scoreboard();
+
+    expect(() => {
+      scoreboard.finishMatch("Spain", "Brazil");
+    }).toThrow("Match not found");
+  });
 });
