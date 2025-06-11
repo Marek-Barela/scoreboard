@@ -3,6 +3,7 @@ type Match = {
   awayTeam: string;
   homeScore: number;
   awayScore: number;
+  startTime: number;
 };
 
 export class Scoreboard {
@@ -22,13 +23,23 @@ export class Scoreboard {
       awayTeam,
       homeScore: 0,
       awayScore: 0,
+      startTime: Date.now(),
     };
 
     this.matches.push(match);
   }
 
-  getSummary() {
-    return this.matches;
+  getSummary(): Match[] {
+    return [...this.matches].sort((a, b) => {
+      const totalA = a.homeScore + a.awayScore;
+      const totalB = b.homeScore + b.awayScore;
+
+      if (totalA !== totalB) {
+        return totalB - totalA;
+      }
+
+      return b.startTime - a.startTime;
+    });
   }
 
   updateScore(
