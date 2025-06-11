@@ -53,4 +53,16 @@ describe("Scoreboard", () => {
       scoreboard.finishMatch("Spain", "Brazil");
     }).toThrow("Match not found");
   });
+
+  it("should remove a match from the scoreboard when finished", () => {
+    const scoreboard = new Scoreboard();
+
+    scoreboard.startMatch("Poland", "Germany");
+    const summaryBefore = scoreboard.getSummary();
+    expect(summaryBefore).toHaveLength(1);
+
+    scoreboard.finishMatch("Poland", "Germany");
+    const summaryAfter = scoreboard.getSummary();
+    expect(summaryAfter).toHaveLength(0);
+  });
 });
