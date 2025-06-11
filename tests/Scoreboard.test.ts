@@ -37,4 +37,12 @@ describe("Scoreboard", () => {
     expect(summary[0].homeScore).toBe(2);
     expect(summary[0].awayScore).toBe(1);
   });
+
+  it("should throw an error when updating a non-existent match", () => {
+    const scoreboard = new Scoreboard();
+
+    expect(() => {
+      scoreboard.updateScore("Spain", "Brazil", 3, 2);
+    }).toThrow("Match not found");
+  });
 });
