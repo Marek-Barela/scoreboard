@@ -30,4 +30,22 @@ export class Scoreboard {
   getSummary() {
     return this.matches;
   }
+
+  updateScore(
+    homeTeam: string,
+    awayTeam: string,
+    homeScore: number,
+    awayScore: number
+  ): void {
+    const match = this.matches.find(
+      m => m.homeTeam === homeTeam && m.awayTeam === awayTeam
+    );
+
+    if (!match) {
+      throw new Error("Match not found");
+    }
+
+    match.homeScore = homeScore;
+    match.awayScore = awayScore;
+  }
 }
