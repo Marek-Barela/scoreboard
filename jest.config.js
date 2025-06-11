@@ -10,4 +10,11 @@ module.exports = {
       isolatedModules: true,
     },
   },
+  coverageDirectory: "coverage",
+  collectCoverageFrom: [
+    "src/**/*.{ts,tsx}",
+    "!**/*.d.ts",
+    "!**/node_modules/**",
+    "!**/utils/**",
+  ],
 };
