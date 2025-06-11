@@ -8,7 +8,15 @@ type Match = {
 export class Scoreboard {
   private matches: Match[] = [];
 
-  startMatch(homeTeam: string, awayTeam: string) {
+  startMatch(homeTeam: string, awayTeam: string): void {
+    const exists = this.matches.some(
+      match => match.homeTeam === homeTeam && match.awayTeam === awayTeam
+    );
+
+    if (exists) {
+      throw new Error("Match already started");
+    }
+
     const match: Match = {
       homeTeam,
       awayTeam,
