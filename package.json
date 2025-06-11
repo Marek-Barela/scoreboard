@@ -1,6 +1,6 @@
 {
   "name": "@marekbarela/scoreboard",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A minimal TypeScript scoreboard library for managing live football match data.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
