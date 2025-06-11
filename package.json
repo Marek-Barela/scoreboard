@@ -1,15 +1,32 @@
 {
-  "name": "scoreboard",
+  "name": "@marekbarela/scoreboard",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A minimal TypeScript scoreboard library for managing live football match data.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "jest",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "scoreboard",
+    "football",
+    "typescript",
+    "library",
+    "matches",
+    "jest"
+  ],
+  "author": "Marek Bareła",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marekbarela/scoreboard.git"
+  },
   "devDependencies": {
     "@types/jest": "^29.5.14",
     "@types/node": "^24.0.0",
