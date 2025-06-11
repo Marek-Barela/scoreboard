@@ -1,4 +1,5 @@
 import { Scoreboard } from "../src/Scoreboard";
+import { delay } from "../utils/delay";
 
 describe("Scoreboard", () => {
   it("should be defined", () => {
@@ -64,5 +65,36 @@ describe("Scoreboard", () => {
     scoreboard.finishMatch("Poland", "Germany");
     const summaryAfter = scoreboard.getSummary();
     expect(summaryAfter).toHaveLength(0);
+  });
+
+  it("should return matches sorted by total score, then by recency if equal", async () => {
+    const scoreboard = new Scoreboard();
+
+    scoreboard.startMatch("Mexico", "Canada");
+    scoreboard.updateScore("Mexico", "Canada", 0, 5);
+
+    await delay(10);
+    scoreboard.startMatch("Spain", "Brazil");
+    scoreboard.updateScore("Spain", "Brazil", 10, 2);
+
+    await delay(10);
+    scoreboard.startMatch("Germany", "France");
+    scoreboard.updateScore("Germany", "France", 2, 2);
+
+    await delay(10);
+    scoreboard.startMatch("Uruguay", "Italy");
+    scoreboard.updateScore("Uruguay", "Italy", 6, 6);
+
+    await delay(10);
+    scoreboard.startMatch("Argentina", "Australia");
+    scoreboard.updateScore("Argentina", "Australia", 3, 1);
+
+    const summary = scoreboard.getSummary();
+
+    expect(summary[0].homeTeam).toBe("Uruguay");
+    expect(summary[1].homeTeam).toBe("Spain");
+    expect(summary[2].homeTeam).toBe("Mexico");
+    expect(summary[3].homeTeam).toBe("Argentina");
+    expect(summary[4].homeTeam).toBe("Germany");
   });
 });
